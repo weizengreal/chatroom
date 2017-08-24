@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websock test</title>
+</head>
+<body>
+
+</body>
+<script>
+    if(!window.WebSocket) {
+        alert('由于浏览器原因，暂不支持该服务！');
+    }
+    else {
+        var websocket;
+        initSocket();
+    }
+
+
+    function initSocket() {
+        websocket = new WebSocket('ws://10.4.10.105:9501');
+        websocket.onopen = function (evt) {
+            onOpen(evt);
+        };
+
+        websocket.message = function (evt) {
+            onMessage(evt);
+        };
+
+        websocket.onclose = function (evt) {
+            onClose(evt);
+        };
+
+        websocket.onerror = function (evt) {
+            onError(evt);
+        }
+    }
+
+    function onOpen(event) {
+        console.log('open');
+    }
+
+    function onClose(event) {
+        console.log('event');
+    }
+
+    function onMessage(event) {
+        console.log('message');
+    }
+
+    function onError(event) {
+        console.log('error');
+    }
+
+
+
+</script>
+</html>
