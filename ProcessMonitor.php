@@ -8,6 +8,7 @@
  * 1、监控
  */
 require_once 'Message.php';
+require_once 'RedisHelp.php';
 
 
 class ProcessMonitor {
@@ -18,13 +19,20 @@ class ProcessMonitor {
     // 构造函数
     public function __construct($options) {
         $this->options = $options;
-        $this->message = new Message('10.4.10.105','9501',$options['websocket']);
-
+        $this->message = new Message('127.0.0.1','9501',$options['websocket'],$options['redis']);
     }
 
     // start 函数
     public function start() {
         $this->message->start();
+    }
+
+    /*
+     * 进程管理函数
+     * 1、开启一个单独的进程用于管理用户状态
+     * */
+    public function processManager() {
+
     }
 
 }

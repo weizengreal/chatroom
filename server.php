@@ -16,6 +16,9 @@ if(PHP_SAPI == 'cli') {
     $processMonitor = new ProcessMonitor($options);
     $processMonitor->start();
 }
+else {
+    echo 'please run at shell!';
+}
 
 
 

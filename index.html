@@ -18,7 +18,7 @@
 
 
     function initSocket() {
-        websocket = new WebSocket('ws://10.4.10.105:9501');
+        websocket = new WebSocket('ws://127.0.0.1:9501');
         websocket.onopen = function (evt) {
             onOpen(evt);
         };
@@ -33,15 +33,24 @@
 
         websocket.onerror = function (evt) {
             onError(evt);
-        }
+        };
+
     }
 
     function onOpen(event) {
-        console.log('open');
+        // 不管成功与否，都会向服务器发送一条信息以确保用户的唯一性
+        var sendMsg ;
+        if(window.localStorage.hasOwnProperty('auth')) {
+            sendMsg = {auth : window.localStorage.getItem('auth') , sendType : 1};
+        }
+        else {
+            sendMsg = {auth : '', sendType : 1, test : 'test new!'};
+        }
+        websocket.send(JSON.stringify(sendMsg));
     }
 
     function onClose(event) {
-        console.log('event');
+        console.log('close');
     }
 
     function onMessage(event) {

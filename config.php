@@ -13,6 +13,10 @@ return [
         'worker_num'      => 2, //worker process num
         'task_worker_num' => 2
     ],
-    'redis' => [],
+    'redis' => [
+        'host'          =>  '127.0.0.1',
+        'port'          =>  '6379',
+        'comHashMap'       =>  'comHashTable'
+    ],
     ''
 ];
